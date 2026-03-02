@@ -30,7 +30,7 @@ MonoBehaviour:
   frictionCoef: 0.7
   shearStrength: 60000000
   boilingPoint: 4500
-  meltingPoint: 900
+  meltingPoint: 1503
   thermalConductivity: 2.85
   specificHeat: 0.79
   thermalExpansion: 6.2
