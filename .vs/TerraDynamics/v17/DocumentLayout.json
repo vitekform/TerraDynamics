@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|m:\\game developement\\unity projects\\terradynamics\\assets\\resources\\scripts\\testing\\worldtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|solutionrelative:assets\\resources\\scripts\\testing\\worldtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|m:\\game developement\\unity projects\\terradynamics\\assets\\resources\\scripts\\systems\\worldgeneration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|solutionrelative:assets\\resources\\scripts\\systems\\worldgeneration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|M:\\Game Developement\\Unity Projects\\TerraDynamics\\assets\\resources\\scripts\\data\\chunk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|solutionrelative:assets\\resources\\scripts\\data\\chunk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|M:\\Game Developement\\Unity Projects\\TerraDynamics\\assets\\resources\\scripts\\data\\blockmaterials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|solutionrelative:assets\\resources\\scripts\\data\\blockmaterials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|M:\\Game Developement\\Unity Projects\\TerraDynamics\\assets\\resources\\scripts\\blockinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|solutionrelative:assets\\resources\\scripts\\blockinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|M:\\Game Developement\\Unity Projects\\TerraDynamics\\assets\\resources\\scripts\\data\\enums\\matterstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7093A99B-BC9C-925D-84ED-E9E1D76DF449}|Assembly-CSharp.csproj|solutionrelative:assets\\resources\\scripts\\data\\enums\\matterstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WorldGeneration.cs",
+              "DocumentMoniker": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Systems\\WorldGeneration.cs",
+              "RelativeDocumentMoniker": "Assets\\Resources\\Scripts\\Systems\\WorldGeneration.cs",
+              "ToolTip": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Systems\\WorldGeneration.cs",
+              "RelativeToolTip": "Assets\\Resources\\Scripts\\Systems\\WorldGeneration.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAIwGsAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T16:49:34.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WorldTest.cs",
+              "DocumentMoniker": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Testing\\WorldTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Resources\\Scripts\\Testing\\WorldTest.cs",
+              "ToolTip": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Testing\\WorldTest.cs",
+              "RelativeToolTip": "Assets\\Resources\\Scripts\\Testing\\WorldTest.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwA8AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T15:37:11.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Chunk.cs",
+              "DocumentMoniker": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Data\\Chunk.cs",
+              "RelativeDocumentMoniker": "Assets\\Resources\\Scripts\\Data\\Chunk.cs",
+              "ToolTip": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Data\\Chunk.cs",
+              "RelativeToolTip": "Assets\\Resources\\Scripts\\Data\\Chunk.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T15:20:29.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MatterState.cs",
+              "DocumentMoniker": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Data\\Enums\\MatterState.cs",
+              "RelativeDocumentMoniker": "Assets\\Resources\\Scripts\\Data\\Enums\\MatterState.cs",
+              "ToolTip": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Data\\Enums\\MatterState.cs",
+              "RelativeToolTip": "Assets\\Resources\\Scripts\\Data\\Enums\\MatterState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T11:48:01.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BlockInstance.cs",
+              "DocumentMoniker": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\BlockInstance.cs",
+              "RelativeDocumentMoniker": "Assets\\Resources\\Scripts\\BlockInstance.cs",
+              "ToolTip": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\BlockInstance.cs",
+              "RelativeToolTip": "Assets\\Resources\\Scripts\\BlockInstance.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T11:28:25.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BlockMaterials.cs",
+              "DocumentMoniker": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Data\\BlockMaterials.cs",
+              "RelativeDocumentMoniker": "Assets\\Resources\\Scripts\\Data\\BlockMaterials.cs",
+              "ToolTip": "M:\\Game Developement\\Unity Projects\\TerraDynamics\\Assets\\Resources\\Scripts\\Data\\BlockMaterials.cs",
+              "RelativeToolTip": "Assets\\Resources\\Scripts\\Data\\BlockMaterials.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T00:46:10.288Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
