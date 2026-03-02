@@ -164,7 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldTest
   graniteMaterial: {fileID: 11400000, guid: 238dd975624bf814cbc89555124bf00b, type: 2}
+  waterMaterial: {fileID: 11400000, guid: 0052486de9f213247a293dd7c1bbae2e, type: 2}
   chunkRadius: 2
+  seaLevel: 20
+  fluidSimulator: {fileID: 881403385}
 --- !u!1 &585613620
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +432,53 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &881403384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881403386}
+  - component: {fileID: 881403385}
+  m_Layer: 0
+  m_Name: FluidSimulator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &881403385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881403384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1435544e3b9b50844b8c45ff672d26ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FluidSimulator
+  updatesPerTick: 3000
+  tickInterval: 0.05
+  fluidMaterial: {fileID: 2100000, guid: d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9, type: 2}
+--- !u!4 &881403386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881403384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50.11608, y: 0, z: 4.5297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253039700
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,3 +599,4 @@ SceneRoots:
   - {fileID: 824052276}
   - {fileID: 1253039704}
   - {fileID: 585613624}
+  - {fileID: 881403386}
