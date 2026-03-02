@@ -79,7 +79,7 @@ public static class WorldGeneration
             chunk.position.y * chunkHeight,
             chunk.position.z * chunkSize
         );
-
+        
         MeshFilter mf = chunkObj.AddComponent<MeshFilter>();
         MeshRenderer mr = chunkObj.AddComponent<MeshRenderer>();
         mr.material = chunk.blocks[0, 0, 0].materials.material[0]; // all faces same material

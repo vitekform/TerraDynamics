@@ -6,6 +6,11 @@ public class Chunk
     public Block[,,] blocks;                // all blocks in this chunk
     public bool isGenerated = false;        // terrain generation flag
 
+    /// <summary>The solid-mesh GameObject created by WorldGeneration.</summary>
+    [System.NonSerialized] public GameObject chunkObject;
+    /// <summary>Set to true by FluidSimulator when fluid has changed and the mesh needs rebuild.</summary>
+    [System.NonSerialized] public bool isFluidDirty = false;
+
     public const int chunkSize = 32;
     public const int chunkHeight = 128;
 
