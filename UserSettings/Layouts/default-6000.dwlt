@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1280
     height: 757.3334
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 253.33333
     height: 458
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -245,14 +245,14 @@ MonoBehaviour:
     y: 458
     width: 1005.3333
     height: 243.33331
-  m_MinSize: {x: 231, y: 276}
-  m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -972,9 +972,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 83.49188, y: 46.14392, z: 65.57642}
+    m_Target: {x: 16, y: -990, z: 80}
     speed: 2
-    m_Value: {x: 83.49188, y: 46.14392, z: 65.57642}
+    m_Value: {x: 16, y: -990, z: 80}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1024,9 +1024,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.07150461, y: 0.92763025, z: -0.27964574, w: -0.2370391}
   m_Size:
-    m_Target: 10
+    m_Target: 97.903305
     speed: 2
-    m_Value: 10
+    m_Value: 93.68737
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1101,12 +1101,13 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_Data: 45616
+      m_SelectedIDs: []
       m_LastClickedID:
-        m_Data: 45616
+        m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1320
+      - m_Data: -1296
+      - m_Data: -12
+      - m_Data: 45620
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1284,7 +1285,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Scripts/Data/Fluids
+    - Assets/Resources
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1294,26 +1295,21 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources/Scripts/Data/Fluids
+  - Assets/Resources
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Unity\TerraDynamics_team
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 42.666687}
+    scrollPos: {x: 0, y: 106.66669}
     m_SelectedIDs:
-    - m_Data: 46052
+    - m_Data: 45990
     m_LastClickedID:
-      m_Data: 46052
+      m_Data: 45990
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 45700
-    - m_Data: 45992
-    - m_Data: 46040
-    - m_Data: 46068
-    - m_Data: 1000000000
-    - m_Data: 2147483647
+    - m_Data: 45702
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1346,7 +1342,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 45700
+    - m_Data: 45702
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1374,8 +1370,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 45616
-    m_LastClickedInstanceID: 45616
+    - m_Data: 45596
+    m_LastClickedInstanceID: 45596
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:

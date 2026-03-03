@@ -6,9 +6,6 @@ public class WorldTest : MonoBehaviour
     public BlockMaterials waterMaterial;    // Assign a water BlockMaterials asset in the Inspector
     public int chunkRadius = 2;             // chunks generated in each direction
 
-    [Tooltip("World-space Y level at or below which fluid is seeded into air gaps.")]
-    public int seaLevel = 20;
-
     // FluidSimulator lives as a sibling or child component; assign in Inspector.
     public FluidSimulator fluidSimulator;
 
@@ -28,13 +25,12 @@ public class WorldTest : MonoBehaviour
             }
         }
 
-        // Seed an initial body of water: fill all air blocks at or below sea level
-        // with water so the world starts with a lake/ocean.
+        // Seed an initial body of water at WorldSettings.SeaLevel
         if (fluidSimulator != null && waterMaterial != null)
             SeedSeaLevel();
     }
 
-    // Fill every air voxel at y <= seaLevel with one full fluid unit.
+    // Fill every air voxel at y <= WorldSettings.SeaLevel with one full fluid unit.
     private void SeedSeaLevel()
     {
         int cs = Chunk.chunkSize;
@@ -42,7 +38,7 @@ public class WorldTest : MonoBehaviour
         for (int cz = -chunkRadius; cz <= chunkRadius; cz++)
         for (int lx = 0; lx < cs; lx++)
         for (int lz = 0; lz < cs; lz++)
-        for (int y = seaLevel; y >= 0; y--)
+        for (int y = WorldSettings.SeaLevel; y >= WorldSettings.WorldMinY; y--)
         {
             int wx = cx * cs + lx;
             int wz = cz * cs + lz;
