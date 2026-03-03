@@ -18,13 +18,14 @@ public class WorldTest : MonoBehaviour
         {
             for (int z = -chunkRadius; z <= chunkRadius; z++)
             {
-                Chunk chunk = new Chunk(new Vector3Int(x, 0, z));
-                WorldGeneration.GenerateChunk(chunk, graniteMaterial);
+                Vector3Int vec = new Vector3Int(x, 0, z);
+                WorldGeneration worldGen = FindObjectOfType<WorldGeneration>();
+                Chunk c = worldGen.GenerateChunk(vec);
 
                 // Register the chunk with the fluid simulator so it can read/write
                 // fluid data and manage the transparent fluid mesh for this chunk.
                 if (fluidSimulator != null)
-                    fluidSimulator.RegisterChunk(chunk);
+                    fluidSimulator.RegisterChunk(c);
             }
         }
 
