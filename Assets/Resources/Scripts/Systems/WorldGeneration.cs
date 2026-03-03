@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 /// <summary>
 /// Orchestrates all world-generation layers for a single chunk:
@@ -123,32 +122,22 @@ public static class WorldGeneration
         chunk.isGenerated = true;
     }
 
-    // ── Mesh building ─────────────────────────────────────────────────────────
+    // ── Cube building ─────────────────────────────────────────────────────────
 
+    /// <summary>
+    /// Spawns one unit-cube GameObject per visible block in the chunk.
+    /// A block is "visible" when at least one of its six face-neighbours is air
+    /// (or lies outside the chunk boundary). Fully-buried interior blocks are
+    /// skipped entirely — this is the face-based occlusion culling step.
+    ///
+    /// All cubes share the same Mesh asset (GetCubeMesh) so GPU instancing can
+    /// batch same-material cubes into a single draw call automatically.
+    /// </summary>
     public static void BuildMesh(Chunk chunk)
     {
         int cs = WorldSettings.ChunkSize;
 
-        var vertices  = new List<Vector3>();
-        var triangles = new List<int>();
-        var uvs       = new List<Vector2>();
-
-        for (int x = 0; x < cs; x++)
-        for (int y = 0; y < cs; y++)
-        for (int z = 0; z < cs; z++)
-        {
-            if (chunk.blocks[x, y, z].materials == null) continue;
-
-            Vector3 pos = new Vector3(x, y, z);
-            AddFace(vertices, triangles, uvs, pos, chunk.blocks, x, y + 1, z, Face.Top);
-            AddFace(vertices, triangles, uvs, pos, chunk.blocks, x, y - 1, z, Face.Bottom);
-            AddFace(vertices, triangles, uvs, pos, chunk.blocks, x + 1, y, z, Face.Right);
-            AddFace(vertices, triangles, uvs, pos, chunk.blocks, x - 1, y, z, Face.Left);
-            AddFace(vertices, triangles, uvs, pos, chunk.blocks, x, y, z + 1, Face.Front);
-            AddFace(vertices, triangles, uvs, pos, chunk.blocks, x, y, z - 1, Face.Back);
-        }
-
-        // Create or reuse the chunk GameObject
+        // Create or reuse the chunk parent (empty transform, no renderer)
         if (chunk.chunkObject == null)
         {
             chunk.chunkObject = new GameObject(
@@ -158,73 +147,73 @@ public static class WorldGeneration
                 WorldSettings.WorldMinY + chunk.position.y * cs,
                 chunk.position.z * cs);
         }
+        else
+        {
+            // Destroy old cube children before rebuilding
+            for (int i = chunk.chunkObject.transform.childCount - 1; i >= 0; i--)
+                Object.Destroy(chunk.chunkObject.transform.GetChild(i).gameObject);
+        }
 
-        MeshFilter mf = chunk.chunkObject.GetComponent<MeshFilter>();
-        if (mf == null) mf = chunk.chunkObject.AddComponent<MeshFilter>();
-        MeshRenderer mr = chunk.chunkObject.GetComponent<MeshRenderer>();
-        if (mr == null) mr = chunk.chunkObject.AddComponent<MeshRenderer>();
+        Mesh cubeMesh = GetCubeMesh();
 
-        // Assign the first valid material found in the chunk
-        BlockMaterials firstMat = null;
-        for (int x = 0; x < cs && firstMat == null; x++)
-        for (int y = 0; y < cs && firstMat == null; y++)
-        for (int z = 0; z < cs && firstMat == null; z++)
-            if (chunk.blocks[x, y, z].materials?.material?.Length > 0)
-                firstMat = chunk.blocks[x, y, z].materials;
-        if (firstMat != null) mr.material = firstMat.material[0];
+        for (int x = 0; x < cs; x++)
+        for (int y = 0; y < cs; y++)
+        for (int z = 0; z < cs; z++)
+        {
+            Block block = chunk.blocks[x, y, z];
+            if (block.materials == null) continue;          // air — skip
+            if (!HasExposedFace(chunk.blocks, x, y, z, cs)) continue; // buried — cull
 
-        // UInt32 index format supports meshes with > 65535 vertices
-        var mesh = new Mesh { indexFormat = UnityEngine.Rendering.IndexFormat.UInt32 };
-        mesh.SetVertices(vertices);
-        mesh.SetTriangles(triangles, 0);
-        mesh.SetUVs(0, uvs);
-        mesh.RecalculateNormals();
-        mf.mesh = mesh;
+            // Spawn a unit cube for this surface block
+            var go = new GameObject();
+            go.transform.SetParent(chunk.chunkObject.transform, false);
+            // Unity cubes are centred at the origin, so offset by 0.5 on every axis
+            go.transform.localPosition = new Vector3(x + 0.5f, y + 0.5f, z + 0.5f);
+
+            var mf = go.AddComponent<MeshFilter>();
+            mf.sharedMesh = cubeMesh;
+
+            var mr = go.AddComponent<MeshRenderer>();
+            if (block.materials?.material?.Length > 0)
+                mr.sharedMaterial = block.materials.material[0];
+        }
     }
 
-    // ── Face helpers ──────────────────────────────────────────────────────────
+    // ── Culling helper ────────────────────────────────────────────────────────
 
-    private enum Face { Top, Bottom, Left, Right, Front, Back }
-
-    private static void AddFace(List<Vector3> verts, List<int> tris, List<Vector2> uvs,
-                                 Vector3 pos, Block[,,] blocks,
-                                 int nx, int ny, int nz, Face face)
+    /// <summary>
+    /// Returns true when block (x,y,z) has at least one face neighbour that is
+    /// air or lies outside the chunk bounds (and therefore might be visible).
+    /// Returns false when all six neighbours are solid — the block is buried.
+    /// </summary>
+    private static bool HasExposedFace(Block[,,] blocks, int x, int y, int z, int cs)
     {
-        int cs = WorldSettings.ChunkSize;
+        if (x == 0      || blocks[x - 1, y, z].materials == null) return true;
+        if (x == cs - 1 || blocks[x + 1, y, z].materials == null) return true;
+        if (y == 0      || blocks[x, y - 1, z].materials == null) return true;
+        if (y == cs - 1 || blocks[x, y + 1, z].materials == null) return true;
+        if (z == 0      || blocks[x, y, z - 1].materials == null) return true;
+        if (z == cs - 1 || blocks[x, y, z + 1].materials == null) return true;
+        return false;
+    }
 
-        // Only render face when neighbour is air or out of bounds
-        if (nx >= 0 && nx < cs && ny >= 0 && ny < cs && nz >= 0 && nz < cs)
-            if (blocks[nx, ny, nz].materials != null) return;
+    // ── Shared cube mesh ──────────────────────────────────────────────────────
 
-        int v = verts.Count;
-        switch (face)
-        {
-            case Face.Top:
-                verts.Add(pos + new Vector3(0,1,0)); verts.Add(pos + new Vector3(1,1,0));
-                verts.Add(pos + new Vector3(1,1,1)); verts.Add(pos + new Vector3(0,1,1));
-                tris.AddRange(new[]{ v,v+2,v+1, v,v+3,v+2 }); break;
-            case Face.Bottom:
-                verts.Add(pos + new Vector3(0,0,0)); verts.Add(pos + new Vector3(1,0,0));
-                verts.Add(pos + new Vector3(1,0,1)); verts.Add(pos + new Vector3(0,0,1));
-                tris.AddRange(new[]{ v,v+1,v+2, v,v+2,v+3 }); break;
-            case Face.Left:
-                verts.Add(pos + new Vector3(0,0,0)); verts.Add(pos + new Vector3(0,1,0));
-                verts.Add(pos + new Vector3(0,1,1)); verts.Add(pos + new Vector3(0,0,1));
-                tris.AddRange(new[]{ v,v+2,v+1, v,v+3,v+2 }); break;
-            case Face.Right:
-                verts.Add(pos + new Vector3(1,0,0)); verts.Add(pos + new Vector3(1,1,0));
-                verts.Add(pos + new Vector3(1,1,1)); verts.Add(pos + new Vector3(1,0,1));
-                tris.AddRange(new[]{ v,v+1,v+2, v,v+2,v+3 }); break;
-            case Face.Front:
-                verts.Add(pos + new Vector3(0,0,1)); verts.Add(pos + new Vector3(0,1,1));
-                verts.Add(pos + new Vector3(1,1,1)); verts.Add(pos + new Vector3(1,0,1));
-                tris.AddRange(new[]{ v,v+2,v+1, v,v+3,v+2 }); break;
-            case Face.Back:
-                verts.Add(pos + new Vector3(0,0,0)); verts.Add(pos + new Vector3(1,0,0));
-                verts.Add(pos + new Vector3(1,1,0)); verts.Add(pos + new Vector3(0,1,0));
-                tris.AddRange(new[]{ v,v+2,v+1, v,v+3,v+2 }); break;
-        }
-        uvs.AddRange(new[] { Vector2.zero, Vector2.right, Vector2.one, Vector2.up });
+    private static Mesh s_cubeMesh;
+
+    /// <summary>
+    /// Returns a cached reference to Unity's built-in unit cube mesh.
+    /// All cube GameObjects share this single mesh asset; no per-block mesh is allocated.
+    /// </summary>
+    private static Mesh GetCubeMesh()
+    {
+        if (s_cubeMesh != null) return s_cubeMesh;
+        // CreatePrimitive gives us the canonical Unity cube mesh; destroy the
+        // temporary GameObject immediately — the mesh asset itself persists.
+        var temp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        s_cubeMesh = temp.GetComponent<MeshFilter>().sharedMesh;
+        Object.Destroy(temp);
+        return s_cubeMesh;
     }
 
     // ── Utility ───────────────────────────────────────────────────────────────

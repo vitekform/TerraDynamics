@@ -8,13 +8,14 @@ using UnityEngine;
 public static class HeightmapGenerator
 {
     // ── Noise tuning constants ───────────────────────────────────────────────
-    private const float BaseScale    = 0.0008f;   // continental shape frequency
-    private const float RidgeScale   = 0.002f;    // mountain ridge frequency
-    private const float DetailScale  = 0.004f;    // local terrain detail
-    private const float WarpStrength = 80f;       // domain-warp displacement (blocks)
+    private const float BaseScale       = 0.0008f;  // continental shape frequency
+    private const float RidgeScale      = 0.002f;   // mountain ridge frequency
+    private const float DetailScale     = 0.004f;   // local terrain detail
+    private const float WarpStrength    = 80f;      // domain-warp displacement (blocks)
+    private const float OceanFloorScale = 0.0012f;  // ocean-floor feature frequency
 
     // ── Height mapping bounds ────────────────────────────────────────────────
-    private const float OceanFloor  = -800f;      // deepest ocean trench
+    private const float OceanFloor  = -800f;      // continental-shelf minimum / ocean entry
     private const float MountainTop = 1800f;      // tallest mountain peak
 
     // ── Public API ───────────────────────────────────────────────────────────
@@ -55,10 +56,54 @@ public static class HeightmapGenerator
         // Remap [−1, 1] → [OceanFloor, MountainTop]
         float surfaceY = Mathf.Lerp(OceanFloor, MountainTop, (combined + 1f) * 0.5f);
 
+        // For submerged columns, blend in a dedicated ocean-floor heightmap so the
+        // seabed has its own topography (continental shelves, abyssal plains, trenches,
+        // mid-ocean ridges) rather than just following the low tail of the continental
+        // noise.  WorldMinY + 1 is the deepest point a trench can reach; OceanFloor
+        // is the shallowest seabed entry.  Near the coast (surfaceY ≈ SeaLevel) the
+        // continental slope is preserved; far offshore the floor noise takes over.
+        if (surfaceY < WorldSettings.SeaLevel)
+        {
+            float floorY = OceanFloorY(cx, wz, s, seed);
+            float t = Mathf.Clamp01(
+                Mathf.InverseLerp(WorldSettings.SeaLevel, OceanFloor, surfaceY));
+            surfaceY = Mathf.Lerp(surfaceY, floorY, t);
+        }
+
         return Mathf.RoundToInt(Mathf.Clamp(surfaceY, WorldSettings.WorldMinY, WorldSettings.WorldMaxY));
     }
 
     // ── Private helpers ──────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Dedicated ocean-floor heightmap.  Returns a world-Y value in
+    /// [WorldMinY + 1, OceanFloor] that drives the seabed depth for a
+    /// submerged column.
+    /// <list type="bullet">
+    ///   <item>Low (near WorldMinY) = deep abyssal plain or trench</item>
+    ///   <item>High (near OceanFloor) = shallow continental shelf</item>
+    /// </list>
+    /// </summary>
+    private static float OceanFloorY(float cx, float wz, float s, int worldSeed)
+    {
+        // Broad shelf / trench structure (coarser than land detail)
+        float shelf = Noise3D.FBm(
+            cx * OceanFloorScale + s + 17.3f,
+            wz * OceanFloorScale + s +  3.7f,
+            1.8f, 5, 0.55f, 2.0f);
+
+        // Mid-ocean ridges and seamounts via ridge noise with a prime-offset seed
+        // so it is decorrelated from the land ridge system.
+        float ridge = RidgeNoise(
+            cx * OceanFloorScale * 0.7f + s,
+            wz * OceanFloorScale * 0.7f + s,
+            worldSeed + 7919);
+
+        float floor = Mathf.Clamp(shelf * 0.75f + ridge * 0.25f, -1f, 1f);
+
+        // Map to [WorldMinY + 1, OceanFloor]
+        return Mathf.Lerp(WorldSettings.WorldMinY + 1f, OceanFloor, (floor + 1f) * 0.5f);
+    }
 
     /// <summary>
     /// Ridge noise: folds abs(Perlin) to create sharp crests.
