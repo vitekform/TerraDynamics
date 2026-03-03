@@ -53,7 +53,7 @@ public class WorldGeneration : MonoBehaviour
     {
         if (chunks.ContainsKey(chunkPosition))
         {
-            return null;
+            return chunks[chunkPosition];
         }
 
         Chunk newChunk = new Chunk(chunkPosition);
@@ -92,7 +92,12 @@ public class WorldGeneration : MonoBehaviour
                     }
                     else if (y <= oceanLevel && y >= height)
                     {
-                        newChunk.blocks[x, y, z].materials = waterBlock;
+                        newChunk.blocks[x, y, z].materials      = waterBlock;
+                        newChunk.blocks[x, y, z].state          = MatterState.Liquid;
+                        newChunk.blocks[x, y, z].fluidLevel     = FluidSimulator.MaxLevel;
+                        newChunk.blocks[x, y, z].viscosity      = waterBlock.viscosity;
+                        newChunk.blocks[x, y, z].fluidDensity   = waterBlock.fluidDensity;
+                        newChunk.blocks[x, y, z].surfaceTension = waterBlock.surfaceTension;
                     }
                     else
                     {
@@ -112,6 +117,7 @@ public class WorldGeneration : MonoBehaviour
         float amplitude = 1;
         float frequency = 1;
         float noiseHeight = 0;
+        float maxValue = 0;
 
         for (int i = 0; i < octaves; i++)
         {
@@ -120,12 +126,13 @@ public class WorldGeneration : MonoBehaviour
 
             float perlinValue = Mathf.PerlinNoise(sampleX, sampleZ);
             noiseHeight += perlinValue * amplitude;
+            maxValue    += amplitude;
 
             amplitude *= persistence;
             frequency *= lacunarity;
         }
 
-        return noiseHeight;
+        return noiseHeight / maxValue;
     }
 
     public void BuildMesh(Chunk chunk)
@@ -134,8 +141,9 @@ public class WorldGeneration : MonoBehaviour
         int chunkHeight = Chunk.chunkHeight;
 
         List<Vector3> vertices = new List<Vector3>();
-        List<int> triangles = new List<int>();
         List<Vector2> uvs = new List<Vector2>();
+        // Separate triangle list per unique material for multi-submesh rendering.
+        Dictionary<BlockMaterials, List<int>> matTriangles = new Dictionary<BlockMaterials, List<int>>();
 
         for (int x = 0; x < chunkSize; x++)
         {
@@ -145,7 +153,12 @@ public class WorldGeneration : MonoBehaviour
                 {
                     Block block = chunk.blocks[x, y, z];
                     if (block.materials == null) continue;
+                    if (block.state == MatterState.Liquid) continue; // rendered by FluidMeshBuilder
 
+                    if (!matTriangles.ContainsKey(block.materials))
+                        matTriangles[block.materials] = new List<int>();
+
+                    List<int> triangles = matTriangles[block.materials];
                     Vector3 blockPos = new Vector3(x, y, z);
 
                     AddFace(vertices, triangles, uvs, blockPos, chunk, x, y + 1, z, Face.Top);
@@ -158,30 +171,46 @@ public class WorldGeneration : MonoBehaviour
             }
         }
 
-        GameObject chunkObj = new GameObject($"Chunk_{chunk.position.x}_{chunk.position.y}");
+        GameObject chunkObj = new GameObject($"Chunk_{chunk.position.x}_{chunk.position.z}");
         chunkObj.transform.parent = this.transform;
-        chunkObj.transform.position = new Vector3(chunk.position.x * chunkSize, 0, chunk.position.y * chunkSize);
+        chunkObj.transform.position = new Vector3(chunk.position.x * chunkSize, 0, chunk.position.z * chunkSize);
         chunk.chunkObject = chunkObj;
 
         MeshFilter mf = chunkObj.AddComponent<MeshFilter>();
         MeshRenderer mr = chunkObj.AddComponent<MeshRenderer>();
 
-        if (vertices.Count > 0)
+        Mesh mesh = new Mesh();
+        mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        mesh.SetVertices(vertices);
+        mesh.SetUVs(0, uvs);
+
+        if (matTriangles.Count > 0)
         {
-            // This part is tricky without knowing BlockMaterials structure.
-            // For now, I'll just assign the grass block material.
-            // You might need to create a texture atlas for different block types.
-            mr.material = grassBlock.material[0];
+            mesh.subMeshCount = matTriangles.Count;
+            Material[] materials = new Material[matTriangles.Count];
+            Material fallback = null;
+            int idx = 0;
+            foreach (var kvp in matTriangles)
+            {
+                mesh.SetTriangles(kvp.Value, idx);
+                if (kvp.Key.material != null && kvp.Key.material.Length > 0)
+                {
+                    materials[idx] = kvp.Key.material[0];
+                }
+                else
+                {
+                    if (fallback == null) fallback = new Material(Shader.Find("Standard"));
+                    materials[idx] = fallback;
+                }
+                idx++;
+            }
+            mr.materials = materials;
         }
         else
         {
             mr.material = new Material(Shader.Find("Standard"));
         }
 
-        Mesh mesh = new Mesh();
-        mesh.SetVertices(vertices);
-        mesh.SetTriangles(triangles, 0);
-        mesh.SetUVs(0, uvs);
         mesh.RecalculateNormals();
         mf.mesh = mesh;
     }
@@ -197,7 +226,9 @@ public class WorldGeneration : MonoBehaviour
         bool renderFace = true;
         if (nx >= 0 && nx < chunkSizeX && ny >= 0 && ny < chunkHeight && nz >= 0 && nz < chunkSizeZ)
         {
-            if (chunk.blocks[nx, ny, nz].materials != null) renderFace = false;
+            Block nb = chunk.blocks[nx, ny, nz];
+            // Only cull against a solid neighbour; liquid neighbours are transparent.
+            if (nb.materials != null && nb.state != MatterState.Liquid) renderFace = false;
         }
 
         if (!renderFace) return;
@@ -243,8 +274,13 @@ public class WorldGeneration : MonoBehaviour
                 vertices.Add(pos + new Vector3(0, 1, 0));
                 break;
         }
-        
-        triangles.AddRange(new int[] { vertStart, vertStart + 2, vertStart + 1, vertStart, vertStart + 3, vertStart + 2 });
+
+        // Bottom and Right faces need reversed winding so their normals point outward.
+        if (face == Face.Bottom || face == Face.Right)
+            triangles.AddRange(new int[] { vertStart, vertStart + 1, vertStart + 2, vertStart, vertStart + 2, vertStart + 3 });
+        else
+            triangles.AddRange(new int[] { vertStart, vertStart + 2, vertStart + 1, vertStart, vertStart + 3, vertStart + 2 });
+
         uvs.AddRange(new Vector2[] { Vector2.zero, Vector2.right, Vector2.one, Vector2.up });
     }
 }

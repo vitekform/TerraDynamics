@@ -73,6 +73,7 @@ public class FluidSimulator : MonoBehaviour
     public void RegisterChunk(Chunk chunk)
     {
         Vector3Int key = chunk.position;
+        if (_chunks.ContainsKey(key)) return; // already registered
         _chunks[key] = chunk;
 
         GameObject go = new GameObject($"FluidMesh_{key.x}_{key.z}");
