@@ -35,11 +35,10 @@ public static class FluidMeshBuilder
         Cols.Clear();
 
         int    cs = Chunk.chunkSize;
-        int    ch = Chunk.chunkHeight;
         Block[,,] b = chunk.blocks;
 
         for (int x = 0; x < cs; x++)
-        for (int y = 0; y < ch; y++)
+        for (int y = 0; y < cs; y++)
         for (int z = 0; z < cs; z++)
         {
             Block bl = b[x, y, z];
@@ -50,7 +49,7 @@ public static class FluidMeshBuilder
             tint.a = 0.78f;   // translucency
 
             // Is the block directly above also liquid?
-            bool aboveLiquid = y + 1 < ch && b[x, y + 1, z].state == MatterState.Liquid;
+            bool aboveLiquid = y + 1 < cs && b[x, y + 1, z].state == MatterState.Liquid;
 
             // Top edge for side faces: extend to y+1 when part of a submerged column.
             float sideTop = aboveLiquid ? y + 1f : y + fill;
@@ -62,17 +61,17 @@ public static class FluidMeshBuilder
             // ── Bottom face ───────────────────────────────────────────────────
             // Render when below is not solid (e.g. fluid hanging in air, or
             // the underside of a submerged block visible through a gap).
-            if (NeedBottomFace(b, x, y - 1, z, cs, ch))
+            if (NeedBottomFace(b, x, y - 1, z, cs))
                 AddBottomFace(x, y, z, tint);
 
             // ── Side faces ────────────────────────────────────────────────────
-            if (NeedSideFace(b, x - 1, y, z, cs, ch))
+            if (NeedSideFace(b, x - 1, y, z, cs))
                 AddLeftFace(x,     y, sideTop, z, tint);   // -X
-            if (NeedSideFace(b, x + 1, y, z, cs, ch))
+            if (NeedSideFace(b, x + 1, y, z, cs))
                 AddRightFace(x + 1, y, sideTop, z, tint);  // +X
-            if (NeedSideFace(b, x, y, z - 1, cs, ch))
+            if (NeedSideFace(b, x, y, z - 1, cs))
                 AddBackFace(x, y, sideTop, z,     tint);   // -Z
-            if (NeedSideFace(b, x, y, z + 1, cs, ch))
+            if (NeedSideFace(b, x, y, z + 1, cs))
                 AddFrontFace(x, y, sideTop, z + 1, tint);  // +Z
         }
 
@@ -89,20 +88,20 @@ public static class FluidMeshBuilder
     // ── Face-culling helpers ───────────────────────────────────────────────────
 
     /// <summary>True when the block at (nx,ny,nz) is not solid → show top face.</summary>
-    private static bool NeedBottomFace(Block[,,] b, int nx, int ny, int nz, int cs, int ch)
+    private static bool NeedBottomFace(Block[,,] b, int nx, int ny, int nz, int cs)
     {
         if (ny < 0) return true;                             // below world floor
         if (nx < 0 || nx >= cs || nz < 0 || nz >= cs) return true; // chunk edge
-        if (ny >= ch) return false;
+        if (ny >= cs) return false;
         Block nb = b[nx, ny, nz];
         return !(nb.state == MatterState.Solid && nb.materials != null);
     }
 
     /// <summary>True when the lateral neighbour is air → show the fluid wall.</summary>
-    private static bool NeedSideFace(Block[,,] b, int nx, int ny, int nz, int cs, int ch)
+    private static bool NeedSideFace(Block[,,] b, int nx, int ny, int nz, int cs)
     {
         // Out-of-bounds → render (handles chunk borders gracefully)
-        if (nx < 0 || nx >= cs || ny < 0 || ny >= ch || nz < 0 || nz >= cs) return true;
+        if (nx < 0 || nx >= cs || ny < 0 || ny >= cs || nz < 0 || nz >= cs) return true;
         Block nb = b[nx, ny, nz];
         if (nb.state == MatterState.Solid && nb.materials != null) return false; // solid wall
         if (nb.state == MatterState.Liquid) return false;                        // another fluid

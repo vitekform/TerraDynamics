@@ -165,8 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldTest
   graniteMaterial: {fileID: 11400000, guid: 238dd975624bf814cbc89555124bf00b, type: 2}
   waterMaterial: {fileID: 11400000, guid: 0052486de9f213247a293dd7c1bbae2e, type: 2}
-  chunkRadius: 2
-  seaLevel: 20
+  chunkRadius: 4
   fluidSimulator: {fileID: 881403385}
 --- !u!1 &585613620
 GameObject:
