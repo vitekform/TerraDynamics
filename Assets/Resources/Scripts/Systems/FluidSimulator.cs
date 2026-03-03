@@ -73,7 +73,6 @@ public class FluidSimulator : MonoBehaviour
     public void RegisterChunk(Chunk chunk)
     {
         Vector3Int key = chunk.position;
-        if (_chunks.ContainsKey(key)) return; // already registered
         _chunks[key] = chunk;
 
         GameObject go = new GameObject($"FluidMesh_{key.x}_{key.z}");
@@ -285,7 +284,6 @@ public class FluidSimulator : MonoBehaviour
                           out int lx, out int ly, out int lz)
     {
         int cs = Chunk.chunkSize;
-        int ch = Chunk.chunkHeight;
 
         int cx = Mathf.FloorToInt((float)world.x / cs);
         int cz = Mathf.FloorToInt((float)world.z / cs);
@@ -294,7 +292,7 @@ public class FluidSimulator : MonoBehaviour
         ly = world.y;
         lz = world.z - cz * cs;
 
-        if (ly < 0 || ly >= ch) { chunk = null; return false; }
+        if (ly < 0 || ly >= cs) { chunk = null; return false; }
 
         return _chunks.TryGetValue(new Vector3Int(cx, 0, cz), out chunk)
                && lx >= 0 && lx < cs && lz >= 0 && lz < cs;
@@ -306,9 +304,8 @@ public class FluidSimulator : MonoBehaviour
     private void ScanChunkForInitialFluid(Chunk chunk)
     {
         int cs = Chunk.chunkSize;
-        int ch = Chunk.chunkHeight;
         for (int x = 0; x < cs; x++)
-        for (int y = 0; y < ch; y++)
+        for (int y = 0; y < cs; y++)
         for (int z = 0; z < cs; z++)
         {
             if (chunk.blocks[x, y, z].state == MatterState.Liquid &&
