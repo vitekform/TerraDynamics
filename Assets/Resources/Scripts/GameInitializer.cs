@@ -32,12 +32,19 @@ namespace Resources.Scripts
             registry.Register("granite_pink",  new Material(graniteDensity, graniteBase + "granite_pink"));
             registry.Register("granite_red",   new Material(graniteDensity, graniteBase + "granite_red"));
             registry.Register("granite_white", new Material(graniteDensity, graniteBase + "granite_white"));
-            registry.Register("breccia", new Material(0f, "Materials/Rocks/Igneous/Intrusive/breccia"));
-            registry.Register("conglomerate", new Material(0f, "Materials/Rocks/Igneous/Intrusive/conglomerate"));
             
-            
+            //   SEDIMENTARY
+            //     CLASTIC
+            //       CONGLOMERATE
+            registry.Register("conglomerate", new Material(0f, "Materials/Rocks/Sedimentary/Clastic/conglomerate"));
+            registry.Register("breccia", new Material(0f, "Materials/Rocks/Sedimentary/Clastic/breccia"));
+            registry.Register("sand", new Material(0f, "Materials/Rocks/Sedimentary/Clastic/sand"));
+            registry.Register("sandstone", new Material(0f, "Materials/Rocks/Sedimentary/Clastic/sandstone"));
+            registry.Register("gravel", new Material(0f, "Materials/Rocks/Sedimentary/Clastic/gravel"));
             // Soils have been here.
             // Jokes on you. Žádné soily tady nebudou protože žádné soily tady nikdy nebudou :D - Siryakari
+            registry.Register("dirt", new Material(0f, "Materials/Soil/dirt"));
+            registry.Register("grass", new Material(0f, "Materials/Soil/grass"));
         }
     }
 }

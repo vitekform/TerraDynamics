@@ -13,9 +13,9 @@ namespace Resources.Scripts
         protected override SurfaceLayer[] GetSurfaceLayers(int worldX, int worldZ, int surfaceY, int seed)
         {
             return new[]
-            {
-                new SurfaceLayer("grass", 1),
+            {                
                 new SurfaceLayer("dirt",  3),
+                new SurfaceLayer("grass", 1)
             };
         }
     }

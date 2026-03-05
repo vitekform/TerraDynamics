@@ -18,18 +18,6 @@ namespace Resources.Scripts
                 key = "granite_white";
             }
 
-            if (key == "grass")
-            {
-                // temporary until we have proper grass
-                key = "granite_red";
-            }
-
-            if (key == "dirt")
-            {
-                // temporary until we have proper dirt
-                key = "granite_black";
-            }
-
             _materials.TryGetValue(key, out Material material);
             if (material == null)
             {
