@@ -32,6 +32,9 @@ namespace Resources.Scripts
             registry.Register("granite_pink",  new Material(graniteDensity, graniteBase + "granite_pink"));
             registry.Register("granite_red",   new Material(graniteDensity, graniteBase + "granite_red"));
             registry.Register("granite_white", new Material(graniteDensity, graniteBase + "granite_white"));
+            registry.Register("breccia", new Material(0f, "Materials/Rocks/Igneous/Intrusive/breccia"));
+            registry.Register("conglomerate", new Material(0f, "Materials/Rocks/Igneous/Intrusive/conglomerate"));
+            
             
             // Soils have been here.
             // Jokes on you. Žádné soily tady nebudou protože žádné soily tady nikdy nebudou :D - Siryakari
