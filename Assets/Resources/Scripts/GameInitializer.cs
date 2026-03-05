@@ -8,8 +8,10 @@ namespace Resources.Scripts
         {
             Debug.Log("Preparing MaterialRegistry..."); 
             PrepareMaterials();
+            Debug.Log("Materials registered!");
             Debug.Log("Running worldgen...");
             WorldGenerator.Instance.GenerateChunksAround(WorldGenerator.Instance.transform.position, 2);
+            Debug.Log("Worldgen finished.");
         }
 
         private void PrepareMaterials()
