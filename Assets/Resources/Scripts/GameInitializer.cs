@@ -19,6 +19,10 @@ namespace Resources.Scripts
             MaterialRegistry registry = WorldGenerator.Instance.MaterialRegistry;
             registry.Register("water", new Material(1000f, "Materials/Fluids/water"));
 
+         //ROCKS
+          //IGNENOUS
+           //INTRUSIVE
+            //GRANITE
             const double graniteDensity = 2750.0; // kg/m³
             const string graniteBase    = "Materials/Rocks/Igneous/Intrusive/Granite/";
             registry.Register("granite_black", new Material(graniteDensity, graniteBase + "granite_black"));
@@ -28,6 +32,9 @@ namespace Resources.Scripts
             registry.Register("granite_pink",  new Material(graniteDensity, graniteBase + "granite_pink"));
             registry.Register("granite_red",   new Material(graniteDensity, graniteBase + "granite_red"));
             registry.Register("granite_white", new Material(graniteDensity, graniteBase + "granite_white"));
+
+
+            //SOIL
         }
     }
 }
