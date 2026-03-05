@@ -1,37 +1,37 @@
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.3/staging' branch; Version is '6000.3.10f1 (e35f0c77bd8e) revision 14901004'; Using compiler version '194234433'; Build Type 'Release'
-OS: 'Windows 11  (10.0.26200) Professional' Language: 'cs' Physical Memory: 16172 MB
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-vitek" at "2026-03-05T17:44:40.2840338Z"
+OS: 'Windows 11  (10.0.26200) Core' Language: 'en' Physical Memory: 32189 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
 System  architecture: x64
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Admin - Filip" at "2026-03-05T17:09:30.2872252Z"
 Process architecture: x64
-Date: 2026-03-05T17:09:30Z
+Date: 2026-03-05T17:44:40Z
 
 COMMAND LINE ARGUMENTS:
-G:\Program Files\Unity\6000.3.10f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\6000.3.10f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-M:/Game Developement/Unity Projects/Github Clones/TerraDynamics
+D:/Unity/TerraDynamics_team
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-57021
+58715
 -licensingIpc
-LicenseClient-Admin - Filip
+LicenseClient-vitek
 -job-worker-count
-5
+10
 -background-job-worker-count
 8
 -gc-helper-count
 1
 -name
 AssetImport
-Successfully changed project path to: M:/Game Developement/Unity Projects/Github Clones/TerraDynamics
-M:/Game Developement/Unity Projects/Github Clones/TerraDynamics
+Successfully changed project path to: D:/Unity/TerraDynamics_team
+D:/Unity/TerraDynamics_team
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
     "memorysetup-temp-allocator-size-audio-worker=65536"
@@ -67,13 +67,13 @@ M:/Game Developement/Unity Projects/Github Clones/TerraDynamics
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
     "memorysetup-temp-allocator-size-cloud-worker=32768"
-Player connection [4792]  Target information:
+Player connection [31884]  Target information:
 
-Player connection [4792]  * "[IP] 192.168.1.79 [Port] 0 [Flags] 2 [Guid] 1968175587 [EditorId] 1968175587 [Version] 1048832 [Id] WindowsEditor(7,DeltaNET) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [31884]  * "[IP] 192.168.68.117 [Port] 0 [Flags] 2 [Guid] 1745743334 [EditorId] 1745743334 [Version] 1048832 [Id] WindowsEditor(7,ganamaga-laptop) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [4792] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [4792] Host joined alternative multi-casting on [225.0.0.222:34997]...
-JobSystem: Creating JobQueue using job-worker-count value 5
+Player connection [31884] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [31884] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 10
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -84,89 +84,75 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 3.56 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.73 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.3.10f1 (e35f0c77bd8e)
-[Subsystems] Discovering subsystems at path G:/Program Files/Unity/6000.3.10f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path M:/Game Developement/Unity Projects/Github Clones/TerraDynamics/Assets
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Unity/TerraDynamics_team/Assets
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1060 6GB (ID=0x1c03)
-    Vendor:   NVIDIA
-    VRAM:     6031 MB
-    Driver:   32.0.15.8180
+    Renderer: Intel(R) Arc(TM) Graphics (ID=0x7d55)
+    Vendor:   Intel
+    VRAM:     18347 MB
+    Driver:   32.0.101.8509
 Initialize mono
-Mono path[0] = 'G:/Program Files/Unity/6000.3.10f1/Editor/Data/Managed'
-Mono path[1] = 'G:/Program Files/Unity/6000.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
-Mono config path = 'G:/Program Files/Unity/6000.3.10f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56268
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56060
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: G:/Program Files/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: G:/Program Files/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Register platform support module: G:/Program Files/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-[Licensing::Module] Licensing is not yet initialized.
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.002787 seconds.
+- Loaded All Assemblies, in  0.409 seconds
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.17.4+4293ba1
-  Session Id:              3f9927d914624a25a1baec589f4ebb5e
-  Correlation Id:          19e872fd6634aa9be534d7771f816a81
-  External correlation Id: 7622567752575052368
-  Machine Id:              6W7IDHh21gHF3ujwd4gMZGlHN1o=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Admin - Filip" (connect: 0.00s, validation: 0.00s, handshake: 1.55s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Admin - Filip-notifications" at "2026-03-05T17:09:31.8393347Z"
-[Licensing::Module] Licensing Background thread has ended after 1.55s
-[Licensing::Module] Licensing is initialized (took 0.36s).
-[Licensing::Client] Successfully resolved entitlement details
-[Licensing::Module] License group:
-  Id: 7971861743457-UnityPersXXXX
-  Product: Unity Personal
-  Type: Assigned
-  Expiration: Unlimited
-Register platform support module: G:/Program Files/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Register platform support module: G:/Program Files/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.365346 seconds.
-- Loaded All Assemblies, in  0.904 seconds
+  Session Id:              37d7b5669e2d4b3a83d86b4bb0772cd8
+  Correlation Id:          8df5a5a6a7bee0baaa09b0e6a4889190
+  External correlation Id: 3718279747345108599
+  Machine Id:              S1LhIW/g6bdmo4wJ/7ecN+lMnDQ=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-vitek" (connect: 0.00s, validation: 0.00s, handshake: 1.07s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-vitek-notifications" at "2026-03-05T17:44:41.3610263Z"
+[Licensing::Module] Licensing Background thread has ended after 1.08s
 Native extension for LinuxStandalone target not found
-Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.520 seconds
-Domain Reload Profiling: 1424ms
-	BeginReloadAssembly (212ms)
+- Finished resetting the current domain, in  0.447 seconds
+Domain Reload Profiling: 853ms
+	BeginReloadAssembly (137ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (56ms)
-	RebuildNativeTypeToScriptingClass (16ms)
-	initialDomainReloadingComplete (417ms)
-	LoadAllAssembliesAndSetupDomain (203ms)
-		LoadAssemblies (211ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (50ms)
+	LoadAllAssembliesAndSetupDomain (169ms)
+		LoadAssemblies (131ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (198ms)
-			TypeCache.Refresh (195ms)
-				TypeCache.ScanAssembly (180ms)
+		AnalyzeDomain (165ms)
+			TypeCache.Refresh (162ms)
+				TypeCache.ScanAssembly (147ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (521ms)
+	FinalizeReload (448ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (468ms)
+		SetupLoadedEditorAssemblies (410ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (60ms)
-			SetLoadedEditorAssemblies (4ms)
-			BeforeProcessingInitializeOnLoad (114ms)
-			ProcessInitializeOnLoadAttributes (202ms)
-			ProcessInitializeOnLoadMethodAttributes (87ms)
+			InitializePlatformSupportModulesInManaged (49ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (98ms)
+			ProcessInitializeOnLoadAttributes (172ms)
+			ProcessInitializeOnLoadMethodAttributes (86ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -176,220 +162,66 @@ Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
 [Licensing::Client] Successfully resolved entitlement details
-- Loaded All Assemblies, in  0.944 seconds
-Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
+[Licensing::Module] License group:
+  Id: 7972536309897-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+- Loaded All Assemblies, in  0.854 seconds
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
 Native extension for LinuxStandalone target not found
-Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.989 seconds
-Domain Reload Profiling: 1932ms
-	BeginReloadAssembly (214ms)
+- Finished resetting the current domain, in  0.923 seconds
+Domain Reload Profiling: 1756ms
+	BeginReloadAssembly (176ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (41ms)
-	RebuildCommonClasses (46ms)
-	RebuildNativeTypeToScriptingClass (16ms)
-	initialDomainReloadingComplete (42ms)
-	LoadAllAssembliesAndSetupDomain (624ms)
-		LoadAssemblies (434ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (33ms)
+	RebuildNativeTypeToScriptingClass (30ms)
+	initialDomainReloadingComplete (69ms)
+	LoadAllAssembliesAndSetupDomain (523ms)
+		LoadAssemblies (383ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (311ms)
-			TypeCache.Refresh (215ms)
-				TypeCache.ScanAssembly (199ms)
-			BuildScriptInfoCaches (79ms)
-			ResolveRequiredComponents (12ms)
-	FinalizeReload (990ms)
+		AnalyzeDomain (233ms)
+			TypeCache.Refresh (162ms)
+				TypeCache.ScanAssembly (149ms)
+			BuildScriptInfoCaches (53ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (924ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (734ms)
+		SetupLoadedEditorAssemblies (732ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (4ms)
+			InitializePlatformSupportModulesInManaged (2ms)
 			SetLoadedEditorAssemblies (6ms)
-			BeforeProcessingInitializeOnLoad (186ms)
-			ProcessInitializeOnLoadAttributes (460ms)
-			ProcessInitializeOnLoadMethodAttributes (75ms)
-			AfterProcessingInitializeOnLoad (2ms)
+			BeforeProcessingInitializeOnLoad (189ms)
+			ProcessInitializeOnLoadAttributes (423ms)
+			ProcessInitializeOnLoadMethodAttributes (104ms)
+			AfterProcessingInitializeOnLoad (9ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (7ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 0.88 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 16 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6200 unused Assets / (4.5 MB). Loaded Objects now: 7001.
-Memory consumption went from 144.0 MB to 139.5 MB.
-Total: 11.775100 ms (FindLiveObjects: 1.031000 ms CreateObjectMapping: 1.319500 ms MarkObjects: 6.919500 ms  DeleteObjects: 2.503500 ms)
+Unloading 6200 unused Assets / (4.1 MB). Loaded Objects now: 7001.
+Memory consumption went from 144.6 MB to 140.5 MB.
+Total: 9.860300 ms (FindLiveObjects: 0.696600 ms CreateObjectMapping: 0.374900 ms MarkObjects: 6.404600 ms  DeleteObjects: 2.382400 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1134662.125346 seconds.
-  path: Assets/Resources/Scripts/world/worldGen/features/RiverFeatureGenerator.cs
-  artifactKey: Guid(c36423f481c50124299be0184be1fe96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/world/worldGen/features/RiverFeatureGenerator.cs using Guid(c36423f481c50124299be0184be1fe96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '2139c6b4647b60e7a5667949e93c35ef') in 0.1067926 seconds
+  Time since last request: 87055.881053 seconds.
+  path: Assets/Resources/Scripts/GameInitializer.cs
+  artifactKey: Guid(cb35668260aa4b8187c1faa0dcc9e9bd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Resources/Scripts/GameInitializer.cs using Guid(cb35668260aa4b8187c1faa0dcc9e9bd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'eb8663a1c42d817bbb176b124ceeea75') in 0.0875544 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/Textures/granite_white.png
-  artifactKey: Guid(0611752ada332f046b28895861499cf3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Textures/granite_white.png using Guid(0611752ada332f046b28895861499cf3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '732cac1a9927dc9e7bf4b15c711ba8ec') in 0.0717883 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/TutorialInfo/StyleSheets/ReadmeEditorDark.uss
-  artifactKey: Guid(1f902e57f049a7f47986618de93f5ee1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/TutorialInfo/StyleSheets/ReadmeEditorDark.uss using Guid(1f902e57f049a7f47986618de93f5ee1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b9fa590c04d07cb39cfef48bf7fa0377') in 0.0371125 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/Textures/granite_gray.png
-  artifactKey: Guid(60b92de89d98d4d40b9fe9eb9ddd6f0c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Textures/granite_gray.png using Guid(60b92de89d98d4d40b9fe9eb9ddd6f0c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '2d1470d008c9d92ea3518c62ca2e27d5') in 0.0086944 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/Resources/Scripts/world/worldGen/Biome.cs
-  artifactKey: Guid(03f6d449de624e345969fa01a46b4e4c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/world/worldGen/Biome.cs using Guid(03f6d449de624e345969fa01a46b4e4c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '6a8fc7fadb51c366d3e72d6ec2360707') in 0.0039358 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/Scripts/world/worldGen/features/PlainsFeatureGenerator.cs
-  artifactKey: Guid(2180dacb4eb70454784f061d42374d0b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/world/worldGen/features/PlainsFeatureGenerator.cs using Guid(2180dacb4eb70454784f061d42374d0b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '63320c8bfd369198e8dcce80350801c9') in 0.004254 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/Materials/Fluids/water.mat
-  artifactKey: Guid(d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Materials/Fluids/water.mat using Guid(d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'af54c762e139830f3d3d311361b35310') in 0.0277767 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/Textures/granite_blue.png
-  artifactKey: Guid(f7eaf120e7a0d1a44902f53fbe34b129) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Textures/granite_blue.png using Guid(f7eaf120e7a0d1a44902f53fbe34b129) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '1ecb567cdddfc824c486678d22e7ebac') in 0.0098283 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Scenes/SampleScene.unity
-  artifactKey: Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scenes/SampleScene.unity using Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '0dfd0288a8856e4181ad2b5b97877625') in 0.0045222 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/Scripts/world/worldGen/BiomeFeatureGenerator.cs
-  artifactKey: Guid(48154758023fd224da29c8c5228464f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/world/worldGen/BiomeFeatureGenerator.cs using Guid(48154758023fd224da29c8c5228464f4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '4fd94e0ddac375f82570e453bedd9d95') in 0.0032812 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/UserChoices.choices
-  artifactKey: Guid(0783599650b035546a7cad620718fc94) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/UserChoices.choices using Guid(0783599650b035546a7cad620718fc94) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '31de34b417ab19879bc95514bb532729') in 0.0030775 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/Scripts/world/general/Material.cs
-  artifactKey: Guid(27e2990f8b1c49a58f0ad178cb6fe318) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/world/general/Material.cs using Guid(27e2990f8b1c49a58f0ad178cb6fe318) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '048ec999809686c4fa6398f26e8e68d3') in 0.0045734 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/Resources/Textures/granite_pink.png
-  artifactKey: Guid(dbe117d4611fa124797c438211dc16cb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Textures/granite_pink.png using Guid(dbe117d4611fa124797c438211dc16cb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'ced7c8cfee1318f6f61d2ae9b6d10427') in 0.0075437 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/Scripts/world/general/Chunk.cs
-  artifactKey: Guid(9c80ce5773697074885aaeb2be0cf4c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/world/general/Chunk.cs using Guid(9c80ce5773697074885aaeb2be0cf4c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '62761d74b161b0b45e400552cdd7f537') in 0.0033686 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/Scripts/world/worldGen/WorldGenerator.cs
-  artifactKey: Guid(c3db5cef11cca3f4998cc85f1e811278) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/world/worldGen/WorldGenerator.cs using Guid(c3db5cef11cca3f4998cc85f1e811278) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '810a3a4472526afcaee2dc836f0969e3') in 0.0034696 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Scenes/SampleScene/ReflectionProbe-0.exr
-  artifactKey: Guid(7f20ae6eb8ad79448b0251420031d794) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Scenes/SampleScene/ReflectionProbe-0.exr using Guid(7f20ae6eb8ad79448b0251420031d794) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'ca90ac354c166f2cd81868935faf2945') in 0.0106237 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Settings/SampleSceneProfile.asset
-  artifactKey: Guid(10fc4df2da32a41aaa32d77bc913491c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Settings/SampleSceneProfile.asset using Guid(10fc4df2da32a41aaa32d77bc913491c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'fdc53b0befe83c661a5f29f7f9114a62') in 0.0041855 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/Scripts/render/ChunkMeshBuilder.cs
-  artifactKey: Guid(b2507d997e0e246408240022b8f28f52) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Scripts/render/ChunkMeshBuilder.cs using Guid(b2507d997e0e246408240022b8f28f52) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '7d1d1651de9169566a0fad1c1d792ef1') in 0.0033408 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/TutorialInfo/Icons/URP.png
-  artifactKey: Guid(727a75301c3d24613a3ebcec4a24c2c8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/TutorialInfo/Icons/URP.png using Guid(727a75301c3d24613a3ebcec4a24c2c8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'bbc45d6c27a246a9b3853257b5f5d712') in 0.0082742 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/Materials/Rocks/Igneous/Intrusive/Granite/granite_black.mat
-  artifactKey: Guid(81bcbee5e9b6450418546ce0dde22903) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Resources/Materials/Rocks/Igneous/Intrusive/Granite/granite_black.mat using Guid(81bcbee5e9b6450418546ce0dde22903) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '4c6a33bd776f51a485942f4d2ca8f0d4') in 0.0065013 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
-Exiting without the bug reporter. Application will terminate with return code 0
