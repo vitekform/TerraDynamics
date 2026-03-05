@@ -1,0 +1,2 @@
+D:\Unity\TerraDynamics_team\obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache
+D:\Unity\TerraDynamics_team\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
