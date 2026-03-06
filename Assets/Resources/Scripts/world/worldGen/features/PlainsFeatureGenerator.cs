@@ -14,8 +14,8 @@ namespace Resources.Scripts
         {
             return new[]
             {                
-                new SurfaceLayer("dirt",  3),
-                new SurfaceLayer("grass", 1)
+                new SurfaceLayer("grass", 1),
+                new SurfaceLayer("dirt",  3)
             };
         }
     }
