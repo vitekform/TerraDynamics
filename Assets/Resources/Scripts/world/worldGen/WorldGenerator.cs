@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,15 +72,15 @@ namespace Resources.Scripts
 
                 if (biome?.FeatureGenerator == null) continue;
 
-                // Ask the biome to fill the column with block data.
-                ColumnBlock[] column = biome.FeatureGenerator.GenerateColumn(worldX, worldZ, surfaceY, seed);
+                // Ask the biome to fill only this chunk's Y slice.
+                ColumnBlock[] column = biome.FeatureGenerator.GenerateColumn(
+                    worldX, worldZ, surfaceY, seed,
+                    minY: originY,
+                    maxY: originY + Chunk.Size - 1);
 
                 foreach (ColumnBlock cb in column)
                 {
-                    // Discard blocks that don't belong to this chunk's Y band.
                     int ly = cb.WorldY - originY;
-                    if (ly < 0 || ly >= Chunk.Size) continue;
-
                     chunk.SetBlock(lx, ly, lz, new Block(
                         shape:       "cube",
                         materialKey: cb.MaterialKey,
@@ -125,5 +126,64 @@ namespace Resources.Scripts
         // GameInitializer.Start() registers all materials first, then calls Generate().
         // DO NOT call GenerateChunksAround here — materials won't be registered yet.
         private void Start() { }
+
+        // ── Async API ─────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Coroutine version of <see cref="GenerateChunksAround"/> that reports
+        /// progress via a callback and yields between each chunk so the UI can update.
+        /// </summary>
+        /// <param name="worldCenter">Centre position in world units.</param>
+        /// <param name="chunkRadius">Half-extent in chunk units on each axis.</param>
+        /// <param name="onProgress">
+        ///   Invoked before each yield with a human-readable status string and a
+        ///   normalised progress value in [0, 1].
+        /// </param>
+        /// <param name="onComplete">Invoked once all chunks are generated and built.</param>
+        public IEnumerator GenerateChunksAroundCoroutine(
+            Vector3 worldCenter,
+            int chunkRadius,
+            Action<string, float> onProgress,
+            Action<List<GameObject>> onComplete = null)
+        {
+            int cx = Mathf.FloorToInt(worldCenter.x / Chunk.Size);
+            int cy = Mathf.FloorToInt(worldCenter.y / Chunk.Size);
+            int cz = Mathf.FloorToInt(worldCenter.z / Chunk.Size);
+
+            // Collect all chunk coordinates up front.
+            var coords = new List<Vector3Int>();
+            for (int dx = -chunkRadius; dx <= chunkRadius; dx++)
+            for (int dy = -chunkRadius; dy <= chunkRadius; dy++)
+            for (int dz = -chunkRadius; dz <= chunkRadius; dz++)
+                coords.Add(new Vector3Int(cx + dx, cy + dy, cz + dz));
+
+            int total = coords.Count;
+
+            // ── Phase 1: generate block data for every chunk ─────────────────
+            var chunks = new List<Chunk>(total);
+            for (int i = 0; i < total; i++)
+            {
+                onProgress?.Invoke($"Generating chunks {i + 1}/{total}", (float)i / total * 0.5f);
+                yield return null;
+
+                var coord = coords[i];
+                chunks.Add(GenerateChunk(coord.x, coord.y, coord.z));
+            }
+
+            // ── Phase 2: build meshes for every chunk ────────────────────────
+            var result = new List<GameObject>(total);
+            for (int i = 0; i < chunks.Count; i++)
+            {
+                onProgress?.Invoke($"Preparing render {i + 1}/{total}", 0.5f + (float)i / total * 0.5f);
+                yield return null;
+
+                GameObject go = chunks[i].Construct(MaterialRegistry);
+                if (go == null) continue;
+                go.transform.SetParent(_worldRoot, worldPositionStays: true);
+                result.Add(go);
+            }
+
+            onComplete?.Invoke(result);
+        }
     }
 }

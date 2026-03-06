@@ -13,7 +13,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{4f03bc37-3547-bd23-2db9-7b579381d330}</ProjectGuid>
+    <ProjectGuid>{24eef11b-12e0-bc5b-9697-386c3085c31e}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -44,13 +44,13 @@
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.inputsystem@57d0e36f6123\Tests\IntegrationTests\Unity.InputSystem.IntegrationTests.asmdef" />
     <Reference Include="UnityEngine">
-      <HintPath>G:\Program Files\Unity\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>G:\Program Files\Unity\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>G:\Program Files\Unity\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

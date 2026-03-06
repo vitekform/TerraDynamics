@@ -42,35 +42,51 @@ namespace Resources.Scripts
 
         // ─────────────────────────────────────────────────────────────────────
 
-        public ColumnBlock[] GenerateColumn(int worldX, int worldZ, int surfaceY, int seed)
+        public ColumnBlock[] GenerateColumn(int worldX, int worldZ, int surfaceY, int seed, int minY, int maxY)
         {
             var blocks = new List<ColumnBlock>();
 
-            // 1. Bedrock at the absolute floor.
-            blocks.Add(new ColumnBlock(TerrainGenerator.BedrockY, KeyBedrock));
-
-            // 2. Stone fill from just above bedrock up to where surface layers begin.
             SurfaceLayer[] layers = GetSurfaceLayers(worldX, worldZ, surfaceY, seed);
             int totalLayerDepth = 0;
             foreach (var l in layers) totalLayerDepth += l.Depth;
 
-            int stoneTop = surfaceY - totalLayerDepth; // exclusive upper bound of stone
-            for (int y = TerrainGenerator.BedrockY + 1; y < stoneTop; y++)
-                blocks.Add(new ColumnBlock(y, KeyStone));
+            int stoneTop = surfaceY - totalLayerDepth;
 
-            // 3. Surface layers (top layer last in the stack = closest to surfaceY).
-            int layerY = surfaceY - totalLayerDepth;
-            foreach (var layer in layers)
+            // Iterate only the Y slice this chunk actually needs.
+            for (int y = minY; y <= maxY; y++)
             {
-                for (int d = 0; d < layer.Depth; d++)
-                    blocks.Add(new ColumnBlock(layerY++, layer.MaterialKey));
-            }
-
-            // 4. Water fill above surface up to sea level (when submerged).
-            if (surfaceY < SeaLevel)
-            {
-                for (int y = surfaceY + 1; y <= SeaLevel; y++)
+                if (y == TerrainGenerator.BedrockY)
+                {
+                    blocks.Add(new ColumnBlock(y, KeyBedrock));
+                }
+                else if (y < stoneTop)
+                {
+                    blocks.Add(new ColumnBlock(y, KeyStone));
+                }
+                else if (y < surfaceY)
+                {
+                    // Determine which surface layer this Y falls into.
+                    int depth = surfaceY - y; // 1 = just below surface, increases downward
+                    int accumulated = 0;
+                    string layerKey = KeyStone;
+                    foreach (var layer in layers)
+                    {
+                        accumulated += layer.Depth;
+                        if (depth <= accumulated) { layerKey = layer.MaterialKey; break; }
+                    }
+                    blocks.Add(new ColumnBlock(y, layerKey));
+                }
+                else if (y == surfaceY)
+                {
+                    // Top surface layer.
+                    blocks.Add(new ColumnBlock(y, layers.Length > 0 ? layers[0].MaterialKey : KeyStone));
+                }
+                else if (y <= SeaLevel)
+                {
+                    // Above terrain surface but at or below sea level → water.
                     blocks.Add(new ColumnBlock(y, KeyWater));
+                }
+                // Above sea level and above surface → air, emit nothing.
             }
 
             return blocks.ToArray();

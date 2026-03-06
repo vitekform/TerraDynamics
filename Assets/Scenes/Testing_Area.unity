@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3db5cef11cca3f4998cc85f1e811278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Scripts.WorldGenerator
-  seed: 1010
+  seed: 123
 --- !u!114 &157965795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   WorldGenerator: {fileID: 157965794}
   Observer: {fileID: 585613624}
   HorizontalViewDistance: 6
-  VerticalViewDistance: 3
+  VerticalViewDistance: 6
   EvictDistance: 10
 --- !u!114 &157965796
 MonoBehaviour:

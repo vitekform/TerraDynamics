@@ -13,7 +13,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{15d0c0b6-b31a-2893-0a3f-d5c9488610e9}</ProjectGuid>
+    <ProjectGuid>{3a6697ef-91ef-a61c-8fc2-855f3bbd5283}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -47,13 +47,13 @@
     <None Include="Library\PackageCache\com.unity.render-pipelines.universal@37e0d4fc2503\Tests\Editor\Unity.RenderPipelines.Universal.Editor.Tests.asmdef" />
     <None Include="Library\PackageCache\com.unity.render-pipelines.universal@37e0d4fc2503\Tests\Editor\PostProcessDataTests\2.shader" />
     <Reference Include="UnityEngine">
-      <HintPath>G:\Program Files\Unity\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>G:\Program Files\Unity\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>G:\Program Files\Unity\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.10f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

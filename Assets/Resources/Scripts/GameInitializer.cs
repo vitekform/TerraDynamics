@@ -1,17 +1,42 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Resources.Scripts.UI;
+using UnityEngine;
 
 namespace Resources.Scripts
 {
     public class GameInitializer : MonoBehaviour
     {
-        private void Start()
+        private IEnumerator Start()
         {
-            Debug.Log("Preparing MaterialRegistry..."); 
+            // ── Show loading screen ──────────────────────────────────────────
+            var loadingScreenGO = new GameObject("LoadingScreen");
+            var loadingScreen   = loadingScreenGO.AddComponent<LoadingScreen>();
+
+            // ── Stage 1: Register materials ──────────────────────────────────
+            loadingScreen.SetStatus("Preparing materials...");
+            loadingScreen.SetProgress(0f);
+            yield return null;
+
             PrepareMaterials();
-            Debug.Log("Materials registered!");
-            Debug.Log("Running worldgen...");
-            WorldGenerator.Instance.GenerateChunksAround(WorldGenerator.Instance.transform.position, 2);
-            Debug.Log("Worldgen finished.");
+            yield return null;
+
+            // ── Stage 2 & 3: Generate world with live progress ───────────────
+            yield return WorldGenerator.Instance.GenerateChunksAroundCoroutine(
+                worldCenter: WorldGenerator.Instance.transform.position,
+                chunkRadius: 2,
+                onProgress: (status, progress) =>
+                {
+                    loadingScreen.SetStatus(status);
+                    loadingScreen.SetProgress(progress);
+                });
+
+            // ── Done ─────────────────────────────────────────────────────────
+            loadingScreen.SetStatus("Done!");
+            loadingScreen.SetProgress(1f);
+
+            yield return new WaitForSeconds(0.5f);
+
+            loadingScreen.Hide();
         }
 
         private void PrepareMaterials()
@@ -21,7 +46,7 @@ namespace Resources.Scripts
 
             // Rocks
             //   IGNEOUS
-            const string igneousBase = "Materials/Rocks/Igneous/";
+            const string igneousBase = "Materials/Rocks/Igneous/Intrusive/";
             //     INTRUSIVE
             //       GRANITE
             const double graniteDensity = 2750.0;
